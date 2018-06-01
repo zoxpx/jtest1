@@ -19,30 +19,49 @@ sudo docker run --name $GOLANG_BUILD_CONTAINER --rm -i \\
       }
     }
     stage('Print sumting') {
-      steps {
-        echo 'Me-ssagge'
+      parallel {
+        stage('Print sumting') {
+          steps {
+            echo 'Me-ssagge'
+          }
+        }
+        stage('build 2') {
+          steps {
+            build(propagate: true, wait: true, job: 'helloWorld')
+          }
+        }
       }
     }
   }
-  post {
-      always {
-	  echo 'One way or another, I have finished'
-	  deleteDir() /* clean up our workspace */
-      }
-      success {
-	  echo 'I succeeeded!'
-      }
-      unstable {
-	  echo 'I am unstable :/'
-      }
-      failure {
-	  echo 'I failed :('
-      }
-      changed {
-	  echo 'Things were different before...'
-      }
-  }
   environment {
     GOLANG_BUILD_CONTAINER = 'jtest1-builder'
+  }
+  post {
+    always {
+      echo 'One way or another, I have finished'
+      deleteDir()
+
+    }
+
+    success {
+      echo 'I succeeeded!'
+
+    }
+
+    unstable {
+      echo 'I am unstable :/'
+
+    }
+
+    failure {
+      echo 'I failed :('
+
+    }
+
+    changed {
+      echo 'Things were different before...'
+
+    }
+
   }
 }
