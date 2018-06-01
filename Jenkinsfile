@@ -22,6 +22,11 @@ sudo docker run --name $GOLANG_BUILD_CONTAINER --rm -i \\
   go test -v'''
       }
     }
+    stage('Post results') {
+      steps {
+        echo 'Me-ssagge'
+      }
+    }
   }
   environment {
     Fua = 'Bar'
