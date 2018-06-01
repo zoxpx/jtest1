@@ -5,9 +5,12 @@ pipeline {
       steps {
         sh '''echo "Hello World"
 
-echo "GO Version: $(go version)"
+GOLANG_BUILD_CONTAINER="jtest1-builder"
+sudo docker rm -f $GOLANG_BUILD_CONTAINER || /bin/true
 
-env GOOS=linux GOARCH=amd64 GO15VENDOREXPERIMENT=1 go test -v'''
+sudo docker run --name $GOLANG_BUILD_CONTAINER --rm -i -v $WORKSPACE:/go/src/github.com/zoxpx/jtest1 -w /go/src/github.com/zoxpx/jtest1 golang \
+    go test -v github.com/zoxpx/jtest1
+'''
       }
     }
   }
