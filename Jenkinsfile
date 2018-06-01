@@ -8,7 +8,7 @@ pipeline {
 echo "Hello World"
 '''
         sh '''echo ":: Cleaning up old $GOLANG_BUILD_CONTAINER container"
-sudo docker rm -f $GOLANG_BUILD_CONTAINER || /bin/true
+sudo docker rm -f $GOLANG_BUILD_CONTAINER 2>&1 || /bin/true
 '''
         sh '''echo ":: Building inside $GOLANG_BUILD_CONTAINER container"
 

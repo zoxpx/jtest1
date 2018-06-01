@@ -14,3 +14,8 @@ func TestNo2(t *testing.T) {
 	ret := JenkinsTest2()
 	assert.Contains(t, ret, "test #2")
 }
+
+func TestNo3(t *testing.T) {
+	ret := JenkinsTest3()
+	assert.Contains(t, ret, "Go away")
+}
