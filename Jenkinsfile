@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh '''echo "Hello World"
 
-go test -v'''
+env GOOS=linux GOARCH=amd64 GO15VENDOREXPERIMENT=1 go test -v'''
       }
     }
   }
