@@ -23,24 +23,24 @@ sudo docker run --name $GOLANG_BUILD_CONTAINER --rm -i \\
         echo 'Me-ssagge'
       }
     }
-    post {
-        always {
-            echo 'One way or another, I have finished'
-            deleteDir() /* clean up our workspace */
-        }
-        success {
-            echo 'I succeeeded!'
-        }
-        unstable {
-            echo 'I am unstable :/'
-        }
-        failure {
-            echo 'I failed :('
-        }
-        changed {
-            echo 'Things were different before...'
-        }
-    }
+  }
+  post {
+      always {
+	  echo 'One way or another, I have finished'
+	  deleteDir() /* clean up our workspace */
+      }
+      success {
+	  echo 'I succeeeded!'
+      }
+      unstable {
+	  echo 'I am unstable :/'
+      }
+      failure {
+	  echo 'I failed :('
+      }
+      changed {
+	  echo 'Things were different before...'
+      }
   }
   environment {
     GOLANG_BUILD_CONTAINER = 'jtest1-builder'
